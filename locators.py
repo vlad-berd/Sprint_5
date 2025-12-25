@@ -21,7 +21,7 @@ class Locators:
     PLACE_ORDER_BUTTON = (By.XPATH, "//button[text()='Оформить заказ']")  # Кнопка "Оформить заказ"
 
     # Локаторы из header
-    CONSTRUCTOR_BUTTON = (By.XPATH, "//header/nav/ul/li//p[text()='Конструктор']")  # Кнопка "Конструктор"
+    CONSTRUCTOR_BUTTON = (By.XPATH, "//header//p[text()='Конструктор']")  # Кнопка "Конструктор"
     LOGO_BUTTON = (By.XPATH, "//header/nav/div[@class='AppHeader_header__logo__2D0X2']/a")  # Логотип-кнопка "Stellar Burgers"
 
     # Локаторы на странице Личный Кабинет
@@ -31,4 +31,4 @@ class Locators:
     TAB_BREADS = (By.XPATH, "//main/section//span[text()='Булки']")  # Раздел "Булки"
     TAB_SAUCES = (By.XPATH, "//main/section//span[text()='Соусы']")  # Раздел "Соусы"
     TAB_TOPPINGS = (By.XPATH, "//main/section//span[text()='Начинки']")  # Раздел "Начинки"
-    SECTION_SELECTED_CONSTRUCTOR = (By.XPATH, "//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span")  # Выбранный раздел
+    SECTION_SELECTED_CONSTRUCTOR = (By.CSS_SELECTOR, ".tab_tab_type_current__2BEPc  span")  # Выбранный раздел
