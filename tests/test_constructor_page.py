@@ -1,3 +1,4 @@
+import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -7,23 +8,15 @@ from locators import Locators
 
 class TestConstructorMenuNavigation:
     
-    def test_navigate_to_sauces_section_success(self, driver):
-        """Проверка перехода к разделу 'Соусы'"""
+    @pytest.mark.parametrize("tab, expected_value", [(Locators.TAB_SAUCES, "Соусы"), (Locators.TAB_TOPPINGS, "Начинки")])
+    def test_section_navigation_success(self, driver, tab, expected_value):
+        """Проверка переходов между разделами"""
         driver.get(BASE_URL)
 
-        driver.find_element(*Locators.TAB_SAUCES).click()
+        driver.find_element(*tab).click()
         section_text = driver.find_element(*Locators.SECTION_SELECTED_CONSTRUCTOR).text
 
-        assert section_text == "Соусы"
-    
-    def test_navigate_to_toppings_section_success(self, driver):
-        """Проверка перехода к разделу 'Начинки'"""
-        driver.get(BASE_URL)
-
-        driver.find_element(*Locators.TAB_TOPPINGS).click()
-        section_text = driver.find_element(*Locators.SECTION_SELECTED_CONSTRUCTOR).text
-
-        assert section_text == "Начинки"
+        assert section_text == expected_value
     
     def test_navigate_to_breads_section_success(self, driver):
         """Проверка перехода к разделу 'Булки'"""
