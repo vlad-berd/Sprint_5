@@ -3,7 +3,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from curl import *
 from locators import Locators
-from data import Credentials
+from data import Credentials, ExpectedValueConstructorPage as EVCP, ExpectedValueLoginPage as EVLP
+
 
 class TestLoginWithExistingCredentials:
 
@@ -16,7 +17,7 @@ class TestLoginWithExistingCredentials:
 
         result_text = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.PLACE_ORDER_BUTTON)).text
 
-        assert result_text == "Оформить заказ"
+        assert result_text == EVCP.text_order_button
         assert driver.current_url == BASE_URL
 
 class TestCheckingLoginButtons:
@@ -28,7 +29,7 @@ class TestCheckingLoginButtons:
         driver.find_element(*Locators.LOGIN_ACCOUNT_BUTTON).click()
         result_text = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_BUTTON)).text
 
-        assert result_text == "Войти"
+        assert result_text == EVLP.text_link_login
         assert driver.current_url == LOGIN_URL
 
     def test_click_personal_cabinet_button_redirects_to_login_success(self, driver):
@@ -38,7 +39,7 @@ class TestCheckingLoginButtons:
         driver.find_element(*Locators.PERSONAL_CABINET_BUTTON).click()
         result_text = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_BUTTON)).text
 
-        assert result_text == "Войти"
+        assert result_text == EVLP.text_link_login
         assert driver.current_url == LOGIN_URL
     
     def test_click_log_in_via_button_registration_form_redirects_to_login_success(self, driver):
@@ -48,7 +49,7 @@ class TestCheckingLoginButtons:
         driver.find_element(*Locators.LINK_LOGIN).click()
         result_text = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_BUTTON)).text
 
-        assert result_text == "Войти"
+        assert result_text == EVLP.text_link_login
         assert driver.current_url == LOGIN_URL
     
     def test_click_log_in_button_in_password_recovery_redirects_to_login_success(self, driver):
@@ -58,5 +59,5 @@ class TestCheckingLoginButtons:
         driver.find_element(*Locators.LINK_LOGIN).click()
         result_text = WebDriverWait(driver, 5).until(EC.visibility_of_element_located(Locators.LOGIN_BUTTON)).text
 
-        assert result_text == "Войти"
+        assert result_text == EVLP.text_link_login
         assert driver.current_url == LOGIN_URL
